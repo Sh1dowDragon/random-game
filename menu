@@ -1,0 +1,71 @@
+csharp
+using System;
+using System.Windows.Forms;
+
+namespace MenuBarDemo
+{
+    public partial class MainForm : Form
+    {
+        public MainForm()
+        {
+            InitializeComponent();
+            CreateMenuBar(); // 创建菜单栏
+        }
+
+        private void CreateMenuBar()
+        {
+            // 创建菜单栏
+            MenuStrip menuBar = new MenuStrip();
+
+            // 添加标题
+            ToolStripLabel titleLabel = new ToolStripLabel("游戏菜单");
+            titleLabel.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            titleLabel.ForeColor = System.Drawing.Color.White;
+            titleLabel.Margin = new Padding(10, 0, 0, 0);
+            menuBar.Items.Add(titleLabel);
+
+            // 添加开始游戏选项
+            ToolStripMenuItem startGameItem = new ToolStripMenuItem("开始游戏");
+            startGameItem.Click += new EventHandler(StartGame_Click);
+            menuBar.Items.Add(startGameItem);
+
+            // 添加设置选项
+            ToolStripMenuItem settingsItem = new ToolStripMenuItem("设置");
+            settingsItem.Click += new EventHandler(Settings_Click);
+            menuBar.Items.Add(settingsItem);
+
+            // 添加退出游戏选项
+            ToolStripMenuItem exitGameItem = new ToolStripMenuItem("退出游戏");
+            exitGameItem.Click += new EventHandler(ExitGame_Click);
+            menuBar.Items.Add(exitGameItem);
+
+            // 设置菜单栏样式
+            menuBar.BackColor = System.Drawing.Color.FromArgb(60, 60, 60); // 菜单栏背景色
+            menuBar.ForeColor = System.Drawing.Color.White; // 菜单栏前景色
+            menuBar.AutoSize = false; // 禁用自动调整大小
+            menuBar.Height = 30; // 设置高度
+
+            // 将菜单栏添加到窗体顶部
+            Controls.Add(menuBar);
+            MainMenuStrip = menuBar;
+        }
+
+        // 开始游戏选项点击事件
+        private void StartGame_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("开始游戏");
+        }
+
+        // 设置选项点击事件
+        private void Settings_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("设置");
+        }
+
+        // 退出游戏选项点击事件
+        private void ExitGame_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+    }
+}
